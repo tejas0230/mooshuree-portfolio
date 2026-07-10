@@ -5,15 +5,25 @@ import ClientList from "@/components/ClientList";
 import MooshureeWrapper from "@/components/MooshureeWrapper";
 import fs from "fs";
 import path from "path";
+import AboutUs from "@/components/AboutUs";
+import OurModels from "@/components/Models";
+import OurPricing from "@/components/OurPricing";
 
 export default function Home() {
 
   const logoDir = path.join(process.cwd(), "public", "clients");
+  const modelDir = path.join(process.cwd(), "public", "models");
+
 
   const logos = fs
     .readdirSync(logoDir)
     .filter((file) => /\.(png|jpg|jpeg|webp|svg)$/i.test(file))
     .map((file) => `/clients/${file}`);
+
+  const models = fs
+    .readdirSync(modelDir)
+    .filter((file) => /\.(png|jpg|jpeg|webp|svg)$/i.test(file))
+    .map((file) => `/models/${file}`);
 
   return (
     <div className="overflow-x-hidden w-screen">
@@ -21,6 +31,9 @@ export default function Home() {
         <Navbar />
         <Hero />
         <ClientList logos={logos} />
+        <AboutUs />
+        <OurModels models={models}/>
+        <OurPricing />
       </MooshureeWrapper>
     </div>
   );

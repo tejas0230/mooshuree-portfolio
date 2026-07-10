@@ -8,7 +8,7 @@ interface ClientListProps {
 export default function ClientList({ logos }: ClientListProps) {
     return (
         <div className="w-full lg:max-w-[1440px] mx-auto flex flex-col items-center p-4">
-            <div className="flex flex-row items-center justify-between w-full  border-y-3 border-primary py-4">
+            <div className="flex flex-row items-center justify-between w-full  border-y-3 border-primary p-4">
                 <h1 className="text-[48px] font-heading text-center text-primary">CLIENT LIST</h1>
                 <h3 className="text-[24px] text-center text-primary font-bold">100+ Clients</h3>
             </div>
