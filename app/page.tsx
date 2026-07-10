@@ -8,6 +8,8 @@ import path from "path";
 import AboutUs from "@/components/AboutUs";
 import OurModels from "@/components/Models";
 import OurPricing from "@/components/OurPricing";
+import Reviews from "@/components/Reviews";
+import LetsConnect from "@/components/LetsConnect";
 
 export default function Home() {
 
@@ -31,9 +33,11 @@ export default function Home() {
         <Navbar />
         <Hero />
         <ClientList logos={logos} />
+        <Reviews />
         <AboutUs />
         <OurModels models={models}/>
         <OurPricing />
+        <LetsConnect />
       </MooshureeWrapper>
     </div>
   );

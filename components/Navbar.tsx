@@ -6,8 +6,8 @@ export default function Navbar() {
                 <ul className="flex space-x-[200px] text-[20px] justify-between items-center">
                     <li><Link href="/">Home</Link></li>
                     <li><Link href="/">Our Work</Link></li>
-                    <li><Link href="/">Contact</Link></li>
-                    <li><Link href="/">About Us</Link></li>
+                    <li><Link href="#contact">Contact</Link></li>
+                    <li><Link href="#about-us">About Us</Link></li>
                 </ul>
             </div>
     )

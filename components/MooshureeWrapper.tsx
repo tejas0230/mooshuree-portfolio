@@ -26,11 +26,15 @@ export default function MooshureeWrapper({
   return (
     <div className="overflow-x-hidden w-screen">
       <div
+        // style={{
+        //   width: DESIGN_WIDTH,
+        //   transform: `scale(${scale})`,
+        //   transformOrigin: "top left",
+        //   height: `calc(100vh / ${scale})`,
+        // }}
         style={{
-          width: DESIGN_WIDTH,
-          transform: `scale(${scale})`,
-          transformOrigin: "top left",
-          height: `calc(100vh / ${scale})`,
+        width: DESIGN_WIDTH,
+        zoom: scale,
         }}
       >
         {children}
