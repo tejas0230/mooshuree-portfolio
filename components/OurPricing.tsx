@@ -157,36 +157,6 @@ export default function OurPricing() {
                 </div>
 
             </div>
-
-            {/* Process */}
-
-            <div className="flex justify-between items-start mt-14 px-12">
-
-                {steps.map((step) => (
-                    <div
-                        key={step.no}
-                        className="flex flex-col items-center w-[250px] relative"
-                    >
-                        <div className="w-14 h-14 rounded-full bg-white border-[3px] border-primary flex items-center justify-center text-primary text-xl font-bold z-10">
-                            {step.no}
-                        </div>
-
-                        {step.no !== "03" && (
-                            <div className="absolute top-7 left-[55%] w-[220px] h-[3px] bg-primary"></div>
-                        )}
-
-                        <h3 className="mt-5 text-xl font-semibold text-center">
-                            {step.title}
-                        </h3>
-
-                        <p className="mt-2 text-sm text-center text-neutral-600 leading-5">
-                            {step.desc}
-                        </p>
-
-                    </div>
-                ))}
-
-            </div>
         </div>
     )
 }

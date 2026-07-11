@@ -54,6 +54,8 @@ export default function Videos() {
                                                 src={`https://portfolio.srv1501339.hstgr.cloud/videos/${category}/${category}_${id}.mp4`}
                                                 controls
                                                 autoPlay
+                                                playsInline
+                                                preload="metadata"
                                                 className="absolute inset-0 w-full h-full object-cover"
                                             />
                                         ) : (
