@@ -10,6 +10,7 @@ import OurModels from "@/components/Models";
 import OurPricing from "@/components/OurPricing";
 import Reviews from "@/components/Reviews";
 import LetsConnect from "@/components/LetsConnect";
+import Videos from "@/components/Videos";
 
 export default function Home() {
 
@@ -34,6 +35,7 @@ export default function Home() {
         <Hero />
         <ClientList logos={logos} />
         <Reviews />
+        <Videos />
         <AboutUs />
         <OurModels models={models}/>
         <OurPricing />
