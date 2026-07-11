@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { motion } from "framer-motion";
+import { clampPx } from "@/lib/vw";
 
 export default function Reviews() {
     const reviews = [
@@ -69,100 +71,140 @@ export default function Reviews() {
                 "It was a pleasure working with the team. They were creative, cooperative, and extremely easy to communicate with.",
         },
     ];
-    
+
     const acheivements = [
         "1000+ Videos made",
         "200+ Clients",
         "50+ Creators",
-        "5 Day TAT" 
-    ]
-
-    const [index, setIndex] = useState(0);
-
-    const next = () => {
-        setIndex((prev) => (prev + 1) % reviews.length);
-    };
-
-    const prev = () => {
-        setIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
-    };
-
-    const visible = [
-        reviews[index],
-        reviews[(index + 1) % reviews.length],
-        reviews[(index + 2) % reviews.length],
+        "5 Day TAT",
     ];
 
+    const total = reviews.length;
+    const extended = [...reviews, ...reviews, ...reviews];
+
+    const [index, setIndex] = useState(total);
+    const [animate, setAnimate] = useState(true);
+    const [step, setStep] = useState(0); // measured px distance between cards, incl. gap
+
+    const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    // Measure the real gap between two adjacent rendered cards, so the
+    // slide distance always matches however wide the cards actually are
+    // at the current screen size — no hardcoded px values.
+    const measureStep = useCallback(() => {
+        const first = cardRefs.current[0];
+        const second = cardRefs.current[1];
+        if (first && second) {
+            setStep(second.offsetLeft - first.offsetLeft);
+        }
+    }, []);
+
+    useEffect(() => {
+        measureStep();
+        const observer = new ResizeObserver(measureStep);
+        if (cardRefs.current[0]) observer.observe(cardRefs.current[0]);
+        window.addEventListener("resize", measureStep);
+        return () => {
+            observer.disconnect();
+            window.removeEventListener("resize", measureStep);
+        };
+    }, [measureStep]);
+
+    const goTo = (dir: number) => {
+        setAnimate(true);
+        setIndex((prev) => prev + dir);
+    };
+
+    const next = () => goTo(1);
+    const prev = () => goTo(-1);
+
+    const handleAnimationComplete = () => {
+        if (index >= total * 2) {
+            setAnimate(false);
+            setIndex((i) => i - total);
+        } else if (index < total) {
+            setAnimate(false);
+            setIndex((i) => i + total);
+        }
+    };
+
     return (
-        <div className="w-full mx-auto bg-primary py-20 px-20 relative">
+        <div className="w-full mx-auto bg-primary px-2 py-10 relative">
 
-            <button
-                onClick={prev}
-                className="absolute left-10 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition"
-            >
-                <ChevronLeft />
-            </button>
+            <div className="w-full relative">
+                <button
+                    onClick={prev}
+                    className="absolute  md:left-10 top-1/2 -translate-y-1/2 w-6 h-6 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition z-10"
+                >
+                    <ChevronLeft />
+                </button>
 
-            <button
-                onClick={next}
-                className="absolute right-10 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition"
-            >
-                <ChevronRight />
-            </button>
+                <button
+                    onClick={next}
+                    className="absolute right-0 md:right-10 top-1/2 -translate-y-1/2 w-6 h-6 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition z-10"
+                >
+                    <ChevronRight />
+                </button>
 
-            <div className="flex justify-center gap-10">
-
-                {visible.map((item) => (
-                    <div
-                        key={item.client}
-                        className="bg-white rounded-2xl shadow-xl w-[500px] p-8 min-h-[420px] flex flex-col"
+                <div className="overflow-hidden w-full max-w-[90%] md:max-w-[1660px] mx-auto px-2">
+                    <motion.div
+                        className="flex gap-10"
+                        animate={{ x: -index * step }}
+                        transition={animate ? { duration: 0.4, ease: "easeInOut" } : { duration: 0 }}
+                        onAnimationComplete={handleAnimationComplete}
                     >
-                        <div className="flex items-center gap-4">
+                        {extended.map((item, i) => (
+                            <div
+                                key={`${item.client}-${i}`}
+                                ref={(el) => { cardRefs.current[i] = el; }}
+                                className="bg-white rounded-2xl shadow-xl w-full md:max-w-[400px] lg:max-w-[500px] p-4 md:p-8  flex flex-col shrink-0"
+                            >
+                                <div className="flex items-center gap-2">
 
-                            <div className="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold">
-                                {item.client.charAt(0)}
-                            </div>
+                                    <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold">
+                                        {item.client.charAt(0)}
+                                    </div>
 
-                            <div>
-                                <h3 className="text-2xl font-semibold">
-                                    {item.client}
-                                </h3>
+                                    <div>
+                                        <h3 className="text-2xl font-semibold" style={{ fontSize: clampPx(16, 20, 20) }}>
+                                            {item.client}
+                                        </h3>
 
-                                <p className="text-neutral-500">
-                                    Client
+                                        <p className="text-neutral-500" style={{ fontSize: clampPx(12, 18, 18) }}>
+                                            Client
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                <div className="flex gap-1 mt-2  md:mt-5">
+                                    {[...Array(5)].map((_, s) => (
+                                        <Star
+                                            key={s}
+                                            size={22}
+                                            fill="#FFC107"
+                                            color="#FFC107"
+                                        />
+                                    ))}
+                                </div>
+
+                                <p className="mt-2 md:mt-6 text-[32px] md:text-lg leading-5 md:leading-9 text-neutral-700" style={{ fontSize: clampPx(14, 20, 20) }}>
+                                    {item.review}
                                 </p>
+
                             </div>
-
-                        </div>
-
-                        <div className="flex gap-1 mt-5">
-                            {[...Array(5)].map((_, i) => (
-                                <Star
-                                    key={i}
-                                    size={22}
-                                    fill="#FFC107"
-                                    color="#FFC107"
-                                />
-                            ))}
-                        </div>
-
-                        <p className="mt-6 text-[32px] md:text-lg leading-9 text-neutral-700">
-                            {item.review}
-                        </p>
-
-                    </div>
-                ))}
-
+                        ))}
+                    </motion.div>
+                </div>
             </div>
 
-            <div className="flex justify-between items-start gap-4 px-[100px] pt-10">
-                {
-                    acheivements.map((item,key)=>(
-                        <div key={key} className="px-8 py-2 bg-white text-primary text-[40px] md:text-[20px] font-bold rounded-4xl inline-flex">
-                            {item}
-                        </div>
-                    ))
-                }
+
+            <div className="flex flex-col md:flex-row justify-between items-start gap-4 px-4 md:px-[100px] pt-10">
+                {acheivements.map((item, key) => (
+                    <div key={key} className="px-8 py-2 bg-white text-primary font-bold rounded-4xl inline-flex" style={{fontSize:clampPx(18,20,20)}}>
+                        {item}
+                    </div>
+                ))}
             </div>
 
         </div>

@@ -1,3 +1,5 @@
+import { clampPx } from "@/lib/vw";
+
 export default function OurPricing() {
 
     const starterFeatures = [
@@ -39,14 +41,14 @@ export default function OurPricing() {
 
 
     return (
-        <div className="w-full lg:max-w-[1440px] mx-auto flex flex-col items-center p-4">
-            <div className="flex flex-row items-center justify-between w-full  border-y-3 border-primary p-4">
-                <h1 className="text-[72px] md:text-[48px] font-heading text-center text-primary">Pricing</h1>
+        <div className="w-full mx-auto flex flex-col items-center p-2">
+            <div className="flex flex-row items-center justify-between w-full  border-y-3 border-primary p-2 md:p-4">
+                <h1 className="font-heading text-center text-primary" style={{fontSize: clampPx(30,48,48)}}>Our Pricing</h1>
             </div>
-            <div className="flex justify-center items-start gap-8 mt-10">
+            <div className="flex flex-col md:flex-row w-full md:justify-center gap-8 p-4">
 
                 {/* Starter */}
-                <div className="w-[320px] rounded-2xl bg-white border border-neutral-200 shadow-xl overflow-hidden">
+                <div className=" w-full md:w-[320px] rounded-2xl bg-white border border-neutral-200 shadow-xl overflow-hidden">
 
                     <div className="p-6">
 
@@ -93,7 +95,7 @@ export default function OurPricing() {
 
                 {/* Pro */}
 
-                <div className="relative w-[320px] rounded-2xl bg-primary shadow-xl overflow-hidden text-white">
+                <div className="relative w-full md:w-[320px] rounded-2xl bg-primary shadow-xl overflow-hidden text-white">
 
                     <div className="absolute right-[-42px] top-5 rotate-45 bg-white text-primary px-14 py-1 text-sm font-semibold">
                         Best Value

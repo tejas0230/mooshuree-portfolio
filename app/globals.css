@@ -4,6 +4,7 @@
   --background: #f2efe8;
   --foreground: #171717;
   --primary: #09009d;
+  --scale: 1;
 }
 
 @theme inline {
