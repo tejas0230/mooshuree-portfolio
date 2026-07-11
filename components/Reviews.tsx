@@ -94,9 +94,9 @@ export default function Reviews() {
     ];
 
     return (
-        <div className="w-full mx-auto bg-primary py-20 px-20 relative">
+        <div className="w-full mx-auto bg-primary py-8 px-8  md:py-20 md:px-20 relative">
 
-            <button
+            {/* <button
                 onClick={prev}
                 className="absolute left-10 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition"
             >
@@ -108,45 +108,45 @@ export default function Reviews() {
                 className="absolute right-10 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition"
             >
                 <ChevronRight />
-            </button>
+            </button> */}
 
-            <div className="flex justify-center gap-10">
+            <div className="flex justify-center gap-2 md:gap-10">
 
                 {visible.map((item) => (
                     <div
                         key={item.client}
-                        className="bg-white rounded-2xl shadow-xl w-[500px] p-8 min-h-[420px] flex flex-col"
+                        className="bg-white rounded-2xl shadow-xl  p-2 md:p-8 md:min-h-[420px] flex flex-col"
                     >
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-1 md:gap-4">
 
-                            <div className="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold">
+                            <div className="w-6 h-6 md:w-14 md:h-14 rounded-full bg-primary text-white flex items-center justify-center text-sm md:text-xl font-bold">
                                 {item.client.charAt(0)}
                             </div>
 
                             <div>
-                                <h3 className="text-2xl font-semibold">
+                                <h3 className="text-xs md:text-2xl font-semibold">
                                     {item.client}
                                 </h3>
 
-                                <p className="text-neutral-500">
+                                <p className="text-xs md:text-base text-neutral-500">
                                     Client
                                 </p>
                             </div>
 
                         </div>
 
-                        <div className="flex gap-1 mt-5">
+                        <div className="flex gap-1 mt-2 md:mt-5">
                             {[...Array(5)].map((_, i) => (
                                 <Star
                                     key={i}
-                                    size={22}
+                                    size={18}
                                     fill="#FFC107"
                                     color="#FFC107"
                                 />
                             ))}
                         </div>
 
-                        <p className="mt-6 text-[32px] md:text-lg leading-9 text-neutral-700">
+                        <p className="mt-2 md:mt-6 text-[4px] md:text-lg md:leading-9 text-neutral-700">
                             {item.review}
                         </p>
 
