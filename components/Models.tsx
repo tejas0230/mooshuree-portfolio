@@ -8,7 +8,7 @@ export default function OurModels({ models }: ModelProps) {
     return (
         <div className="w-full lg:max-w-[1440px] mx-auto flex flex-col items-center p-4">
             <div className="flex flex-row items-center justify-between w-full  border-y-3 border-primary p-4 bg-primary">
-                <h1 className="text-[48px] font-heading text-center text-white">Our Models</h1>
+                <h1 className="text-[72px] md:text-[48px] font-heading text-center text-white">Our Models</h1>
             </div>
             <div className="w-full grid grid-cols-6 gap-[3px] bg-primary p-[3px]">
                 {models.map((model, index) => (

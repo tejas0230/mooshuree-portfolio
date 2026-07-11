@@ -41,7 +41,7 @@ export default function OurPricing() {
     return (
         <div className="w-full lg:max-w-[1440px] mx-auto flex flex-col items-center p-4">
             <div className="flex flex-row items-center justify-between w-full  border-y-3 border-primary p-4">
-                <h1 className="text-[48px] font-heading text-center text-primary">Pricing</h1>
+                <h1 className="text-[72px] md:text-[48px] font-heading text-center text-primary">Pricing</h1>
             </div>
             <div className="flex justify-center items-start gap-8 mt-10">
 
@@ -50,21 +50,21 @@ export default function OurPricing() {
 
                     <div className="p-6">
 
-                        <h2 className="text-3xl font-heading text-neutral-900">
+                        <h2 className="text-[32px] md:text-3xl font-heading text-neutral-900">
                             Starter
                         </h2>
 
                         <div className="mt-5 bg-neutral-900 rounded-full px-7 py-4">
-                            <h3 className="text-5xl font-bold text-white">
+                            <h3 className="text-[48px] md:text-5xl font-bold text-white">
                                 ₹7,600
                             </h3>
 
-                            <p className="text-base text-neutral-300">
+                            <p className="text-xl md:text-base text-neutral-300">
                                 Per month
                             </p>
                         </div>
 
-                        <h4 className="text-2xl font-bold text-center mt-5">
+                        <h4 className="text-3xl md:text-2xl font-bold text-center mt-5">
                             ₹3,800 per video
                         </h4>
 
@@ -79,7 +79,7 @@ export default function OurPricing() {
                                         ✓
                                     </div>
 
-                                    <span className="text-lg font-medium">
+                                    <span className="text-xl md:text-lg font-medium">
                                         {feature}
                                     </span>
                                 </div>
@@ -101,7 +101,7 @@ export default function OurPricing() {
 
                     <div className="p-6">
 
-                        <h2 className="text-3xl font-heading">
+                        <h2 className="text-[32px] md:text-3xl font-heading">
                             Pro
                         </h2>
 
@@ -109,11 +109,11 @@ export default function OurPricing() {
 
                             <div className="bg-primary rounded-full px-6 py-3 border-[6px] border-neutral-900">
 
-                                <h3 className="text-5xl font-bold">
+                                <h3 className="text-[48px] md:text-5xl font-bold">
                                     ₹35,000
                                 </h3>
 
-                                <p className="text-base">
+                                <p className="text-xl md:text-base">
                                     Per month
                                 </p>
 
@@ -123,11 +123,11 @@ export default function OurPricing() {
 
                         <div className="mt-5 text-center">
 
-                            <h4 className="text-2xl font-bold">
+                            <h4 className="text-3xl md: text-2xl font-bold">
                                 ₹3,500 per video
                             </h4>
 
-                            <p className="text-sm opacity-90">
+                            <p className="text-lg md:text-sm opacity-90">
                                 (Save ₹300 each)
                             </p>
 
@@ -144,7 +144,7 @@ export default function OurPricing() {
                                         ✓
                                     </div>
 
-                                    <span className="text-lg font-medium">
+                                    <span className="text-xl md:text-lg font-medium">
                                         {feature}
                                     </span>
                                 </div>

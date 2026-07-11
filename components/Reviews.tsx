@@ -94,18 +94,18 @@ export default function Reviews() {
     ];
 
     return (
-        <div className="w-full max-w-[1440px] mx-auto bg-primary py-20 px-10 relative">
+        <div className="w-full mx-auto bg-primary py-20 px-20 relative">
 
             <button
                 onClick={prev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition"
+                className="absolute left-10 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition"
             >
                 <ChevronLeft />
             </button>
 
             <button
                 onClick={next}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition"
+                className="absolute right-10 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition"
             >
                 <ChevronRight />
             </button>
@@ -115,7 +115,7 @@ export default function Reviews() {
                 {visible.map((item) => (
                     <div
                         key={item.client}
-                        className="bg-white rounded-2xl shadow-xl w-[360px] p-8 min-h-[420px] flex flex-col"
+                        className="bg-white rounded-2xl shadow-xl w-[500px] p-8 min-h-[420px] flex flex-col"
                     >
                         <div className="flex items-center gap-4">
 
@@ -146,7 +146,7 @@ export default function Reviews() {
                             ))}
                         </div>
 
-                        <p className="mt-6 text-lg leading-9 text-neutral-700">
+                        <p className="mt-6 text-[32px] md:text-lg leading-9 text-neutral-700">
                             {item.review}
                         </p>
 
@@ -158,7 +158,7 @@ export default function Reviews() {
             <div className="flex justify-between items-start gap-4 px-[100px] pt-10">
                 {
                     acheivements.map((item,key)=>(
-                        <div key={key} className="px-8 py-2 bg-white text-primary text-[20px] font-bold rounded-4xl inline-flex">
+                        <div key={key} className="px-8 py-2 bg-white text-primary text-[40px] md:text-[20px] font-bold rounded-4xl inline-flex">
                             {item}
                         </div>
                     ))

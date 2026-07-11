@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 
-const DESIGN_WIDTH = 1920;
+const DESIGN_WIDTH = 2120;
 
 export default function MooshureeWrapper({
   children,

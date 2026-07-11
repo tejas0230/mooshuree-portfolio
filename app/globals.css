@@ -3,7 +3,7 @@
 :root {
   --background: #f2efe8;
   --foreground: #171717;
-  --primary: #383cff;
+  --primary: #09009d;
 }
 
 @theme inline {
@@ -11,7 +11,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
   --font-heading: var(--font-passion-one);
-  --color-primary: #383cff;
+  --color-primary: #09009d;
 }
 
 body {
