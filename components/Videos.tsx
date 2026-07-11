@@ -51,7 +51,7 @@ export default function Videos() {
                                     >
                                         {isPlaying ? (
                                             <video
-                                                src={`/videos/${category}/${category}_${id}.mp4`}
+                                                src={`https://portfolio.srv1501339.hstgr.cloud/videos/${category}/${category}_${id}.mp4`}
                                                 controls
                                                 autoPlay
                                                 className="absolute inset-0 w-full h-full object-cover"
