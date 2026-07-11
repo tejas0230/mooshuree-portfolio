@@ -1,5 +1,6 @@
 
 import Image from "next/image";
+import { clampPx } from "@/lib/vw";
 
 interface ClientListProps {
     logos: string[];
@@ -7,19 +8,21 @@ interface ClientListProps {
 
 export default function ClientList({ logos }: ClientListProps) {
     return (
-        <div className="w-full lg:max-w-[1440px] mx-auto flex flex-col items-center p-4">
-            <div className="flex flex-row items-center justify-between w-full  border-y-3 border-primary p-4">
-                <h1 className="text-[72px] md:text-[48px] font-heading text-center text-primary">CLIENT LIST</h1>
-                <h3 className="text-[48px] md:text-[24px] text-center text-primary font-bold">200+ Clients</h3>
+        <div className="w-full mx-auto flex flex-col items-center p-2">
+            <div className="flex flex-row items-center justify-between w-full  border-y-3 border-primary p-2 md:p-4">
+                <h1 className="font-heading text-center text-primary" style={{fontSize: clampPx(30,48,48)}}>CLIENT LIST</h1>
+                <h3 className="text-center text-primary font-bold" style={{fontSize: clampPx(18,24,24)}}>200+ Clients</h3>
             </div>
             <div className="w-full flex flex-col items-start py-4">
-                <h1 className="bg-primary text-white text-[22px] text-center py-2 px-4 rounded-4xl mb-4">Top Brands</h1>
-                <div className="w-full grid grid-cols-6 gap-5 mt-8">
+                <h1 className="bg-primary text-white text-center py-2 px-4 md:px-8 rounded-4xl" style={{fontSize:clampPx(16, 28,28)}}>Top Brands</h1>
+                <div className="w-full grid grid-cols-4 md:grid-cols-6 gap-2 md:gap-5 mt-4">
                     {logos.map((logo) => (
                         <div
                             key={logo}
                             className="
-        h-28
+        h-20
+        md:h-36
+
         rounded-xl
         bg-white
         border border-gray-200
@@ -31,7 +34,8 @@ export default function ClientList({ logos }: ClientListProps) {
         flex
         items-center
         justify-center
-        p-5
+        p-2
+        md:p-4
       "
                         >
                             <Image
