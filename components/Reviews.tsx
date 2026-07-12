@@ -166,59 +166,62 @@ export default function Reviews() {
             <div className="w-full relative">
                 <button
                     onClick={prev}
-                    className="absolute  md:left-10 top-1/2 -translate-y-1/2 w-6 h-6 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition z-10"
+                    className="absolute left-0 md:left-10 top-1/2 -translate-y-1/2 w-5 h-5 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition z-10"
                 >
-                    <ChevronLeft />
+                    <ChevronLeft className="w-3 h-3 md:w-6 md:h-6" />
                 </button>
 
                 <button
                     onClick={next}
-                    className="absolute right-0 md:right-10 top-1/2 -translate-y-1/2 w-6 h-6 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition z-10"
+                    className="absolute right-0 md:right-10 top-1/2 -translate-y-1/2 w-5 h-5 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition z-10"
                 >
-                    <ChevronRight />
+                    <ChevronRight className="w-3 h-3 md:w-6 md:h-6" />
                 </button>
 
                 <div
                     ref={scrollRef}
-                    className="flex gap-10 overflow-x-auto snap-x snap-mandatory w-full max-w-[90%] md:max-w-[1660px] mx-auto px-2 [&::-webkit-scrollbar]:hidden"
+                    className="flex gap-1.5 md:gap-10 overflow-x-auto snap-x snap-mandatory w-full max-w-[92%] md:max-w-[1660px] mx-auto px-1 md:px-2 [&::-webkit-scrollbar]:hidden"
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none", scrollBehavior: "smooth" }}
                 >
                     {extended.map((item, i) => (
                         <div
                             key={`${item.client}-${i}`}
                             ref={(el) => { cardRefs.current[i] = el; }}
-                            className="snap-center bg-white rounded-2xl shadow-xl w-full md:max-w-[400px] lg:max-w-[500px] p-4 md:p-8  flex flex-col shrink-0"
+                            className="snap-center bg-white rounded-lg md:rounded-2xl shadow-xl w-[calc(33.333%-4px)] md:w-full md:max-w-[400px] lg:max-w-[500px] p-1.5 md:p-8 flex flex-col shrink-0"
                         >
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 md:gap-2">
 
-                                <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold">
+                                <div className="w-4 h-4 md:w-12 md:h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold shrink-0" style={{ fontSize: clampPx(8, 20, 20) }}>
                                     {item.client.charAt(0)}
                                 </div>
 
-                                <div>
-                                    <h3 className="text-2xl font-semibold" style={{ fontSize: clampPx(16, 20, 20) }}>
+                                <div className="min-w-0">
+                                    <h3 className="font-semibold truncate" style={{ fontSize: clampPx(8, 20, 20) }}>
                                         {item.client}
                                     </h3>
 
-                                    <p className="text-neutral-500" style={{ fontSize: clampPx(12, 18, 18) }}>
+                                    <p className="text-neutral-500 truncate" style={{ fontSize: clampPx(6, 18, 18) }}>
                                         Client
                                     </p>
                                 </div>
 
                             </div>
 
-                            <div className="flex gap-1 mt-2  md:mt-5">
+                            <div className="flex gap-0.5 md:gap-1 mt-1 md:mt-5">
                                 {[...Array(5)].map((_, s) => (
                                     <Star
                                         key={s}
-                                        size={22}
+                                        className="w-2 h-2 md:w-[22px] md:h-[22px]"
                                         fill="#FFC107"
                                         color="#FFC107"
                                     />
                                 ))}
                             </div>
 
-                            <p className="mt-2 md:mt-6 text-[32px] md:text-lg leading-5 md:leading-9 text-neutral-700" style={{ fontSize: clampPx(14, 20, 20) }}>
+                            <p
+                                className="mt-1 md:mt-6 leading-tight md:leading-9 text-neutral-700 line-clamp-4 md:line-clamp-none"
+                                style={{ fontSize: clampPx(7, 20, 20) }}
+                            >
                                 {item.review}
                             </p>
 
@@ -228,9 +231,9 @@ export default function Reviews() {
             </div>
 
 
-            <div className="flex flex-col md:flex-row justify-between items-start gap-4 px-4 md:px-[100px] pt-10">
+            <div className="flex flex-row justify-between items-start gap-2 md:gap-4 px-4 md:px-[100px] pt-6 md:pt-10">
                 {acheivements.map((item, key) => (
-                    <div key={key} className="px-8 py-2 bg-white text-primary font-bold rounded-4xl inline-flex" style={{fontSize:clampPx(18,20,20)}}>
+                    <div key={key} className="px-2 md:px-4 py-1 md:px-8 md:py-2 bg-white text-primary font-bold rounded-4xl inline-flex" style={{fontSize:clampPx(10,20,20)}}>
                         {item}
                     </div>
                 ))}
