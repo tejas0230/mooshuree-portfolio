@@ -13,13 +13,11 @@ export default function MooshureeWrapper({
   const [height, setHeight] = useState(0);
 
   const contentRef = useRef<HTMLDivElement>(null);
-  const scaleRef = useRef(1); // mirror of `scale`, readable inside the click handler without stale-closure issues
 
   const updateScale = () => {
     if (!contentRef.current) return;
 
     const newScale = Math.min(window.innerWidth / DESIGN_WIDTH, 1);
-    scaleRef.current = newScale;
 
     setScale(newScale);
     setHeight(contentRef.current.scrollHeight * newScale);
@@ -32,25 +30,40 @@ export default function MooshureeWrapper({
   useEffect(() => {
     window.addEventListener("resize", updateScale);
 
-    // Keep height in sync with the content's *actual* size — not just on
-    // window resize, but whenever the content itself changes size (fonts
-    // loading, images loading, carousel animating, etc). This is what was
-    // causing the scroll range to drift out of sync with the visual page.
-    const observer = new ResizeObserver(() => updateScale());
-    if (contentRef.current) observer.observe(contentRef.current);
-
     return () => {
       window.removeEventListener("resize", updateScale);
-      observer.disconnect();
     };
   }, []);
 
-  // Intercept in-page anchor clicks and scroll manually, since native
-  // anchor-jump can be unreliable when the target is inside a transformed
-  // ancestor. getBoundingClientRect() already returns the *visual* (scaled)
-  // position, so no manual scale math is needed here — just convert the
-  // viewport-relative rect into an absolute document scroll position.
+  // ↓↓↓ THIS is the block that replaces your old click-handling useEffect ↓↓↓
   useEffect(() => {
+    let rafId: number | null = null;
+
+    const animateScrollTo = (targetY: number, duration = 500) => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+
+      const startY = window.scrollY;
+      const distance = targetY - startY;
+      const startTime = performance.now();
+
+      const easeInOutQuad = (t: number) =>
+        t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+
+      const step = (now: number) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        window.scrollTo(0, startY + distance * easeInOutQuad(progress));
+
+        if (progress < 1) {
+          rafId = requestAnimationFrame(step);
+        } else {
+          rafId = null;
+        }
+      };
+
+      rafId = requestAnimationFrame(step);
+    };
+
     const handleClick = (e: MouseEvent) => {
       const anchor = (e.target as HTMLElement)?.closest('a[href^="#"]');
       if (!anchor) return;
@@ -64,14 +77,18 @@ export default function MooshureeWrapper({
       e.preventDefault();
 
       const absoluteTop = target.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: absoluteTop, behavior: "smooth" });
+      animateScrollTo(absoluteTop);
 
       history.pushState(null, "", `#${id}`);
     };
 
     document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
+    return () => {
+      document.removeEventListener("click", handleClick);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, []);
+  // ↑↑↑ END replacement block ↑↑↑
 
   return (
     <div className="overflow-hidden w-screen" style={{ height }}>
