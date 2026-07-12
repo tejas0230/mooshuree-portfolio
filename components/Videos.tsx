@@ -25,14 +25,14 @@ export default function Videos() {
     } | null>(null);
 
     return (
-        <div className="w-full mx-auto flex flex-col items-center p-2">
-            <div className="flex flex-row items-center justify-between w-full  border-y-3 border-primary p-2 md:p-4">
-                <h1 className="font-heading text-center text-primary" style={{ fontSize: clampPx(30, 48, 48) }}>Videos</h1>
+        <div className="w-full lg:max-w-[1440px] mx-auto flex flex-col items-center p-4">
+            <div className="flex flex-row items-center justify-between w-full  border-y-3 border-primary p-4">
+                <h1 className="text-[120px] md:text-[48px] font-heading text-center text-primary">VIDEOS</h1>
             </div>
             <div className="w-full flex flex-col gap-10 py-4">
                 {categories.map((category) => (
                     <div key={category} className="w-full flex flex-col items-start">
-                        <h1 className="bg-primary text-white text-center py-2 px-4 md:px-8 rounded-4xl uppercase mb-3" style={{fontSize:clampPx(20, 28,28)}}>
+                        <h1 className="bg-primary text-white text-[56px] md:text-[22px] px-10 py-4 md:py-2 md:px-4 rounded-[999px] md:rounded-4xl mb-4 uppercase">
                             {category.replaceAll("-", " ")}
                         </h1>
 

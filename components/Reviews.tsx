@@ -134,14 +134,14 @@ export default function Reviews() {
             <div className="w-full relative">
                 <button
                     onClick={prev}
-                    className="absolute  md:left-10 top-1/2 -translate-y-1/2 w-6 h-6 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition z-10"
+                    className="absolute left-10 top-1/2 -translate-y-1/2 w-20 h-20 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition z-10"
                 >
                     <ChevronLeft />
                 </button>
 
                 <button
                     onClick={next}
-                    className="absolute right-0 md:right-10 top-1/2 -translate-y-1/2 w-6 h-6 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition z-10"
+                    className="absolute right-10 md:right-10 top-1/2 -translate-y-1/2 w-20 h-20 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition z-10"
                 >
                     <ChevronRight />
                 </button>
@@ -157,22 +157,22 @@ export default function Reviews() {
                             <div
                                 key={`${item.client}-${i}`}
                                 ref={(el) => { cardRefs.current[i] = el; }}
-                                className="bg-white rounded-2xl shadow-xl w-full md:max-w-[400px] lg:max-w-[500px] p-4 md:p-8  flex flex-col shrink-0"
+                                className="bg-white rounded-2xl shadow-xl max-w-[500px] p-4 md:p-8  flex flex-col shrink-0"
                             >
                                 <div className="flex items-center gap-2">
 
-                                    <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold">
+                                    <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold">
                                         {item.client.charAt(0)}
                                     </div>
 
                                     <div>
-                                        <h3 className="text-2xl font-semibold" style={{ fontSize: clampPx(16, 20, 20) }}>
+                                        <h3 className="text-2xl font-semibold" style={{ fontSize: clampPx(40, 20, 20) }}>
                                             {item.client}
                                         </h3>
 
-                                        <p className="text-neutral-500" style={{ fontSize: clampPx(12, 18, 18) }}>
+                                        {/* <p className="text-neutral-500" style={{ fontSize: clampPx(30, 18, 18) }}>
                                             Client
-                                        </p>
+                                        </p> */}
                                     </div>
 
                                 </div>
@@ -181,14 +181,14 @@ export default function Reviews() {
                                     {[...Array(5)].map((_, s) => (
                                         <Star
                                             key={s}
-                                            size={22}
+                                            size={clampPx(26,22,22)}
                                             fill="#FFC107"
                                             color="#FFC107"
                                         />
                                     ))}
                                 </div>
 
-                                <p className="mt-2 md:mt-6 text-[32px] md:text-lg leading-5 md:leading-9 text-neutral-700" style={{ fontSize: clampPx(14, 20, 20) }}>
+                                <p className="mt-2 md:mt-6 leading-12 md:leading-9 text-neutral-700" style={{ fontSize: clampPx(36, 20, 20) }}>
                                     {item.review}
                                 </p>
 
@@ -199,9 +199,9 @@ export default function Reviews() {
             </div>
 
 
-            <div className="flex flex-col md:flex-row justify-between items-start gap-4 px-4 md:px-[100px] pt-10">
+            <div className="flex justify-between items-start gap-4 px-4 md:px-[100px] pt-10">
                 {acheivements.map((item, key) => (
-                    <div key={key} className="px-8 py-2 bg-white text-primary font-bold rounded-4xl inline-flex" style={{fontSize:clampPx(18,20,20)}}>
+                    <div key={key} className="px-8 py-2 bg-white text-primary font-bold rounded-4xl inline-flex" style={{fontSize:clampPx(40,20,20)}}>
                         {item}
                     </div>
                 ))}

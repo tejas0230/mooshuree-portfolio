@@ -3,12 +3,12 @@ import { clampPx } from "@/lib/vw";
 export default function LetsConnect(){
     return(
         <div className="w-full lg:max-w-[1440px] mx-auto flex flex-col items-center px-4 py-4 mt-14 bg-primary/10" id="contact">
-            <h1 className="text-primary font-heading" style={{fontSize:clampPx(36,40,40)}}>LET'S CONNECT!</h1>
-            <div className="flex flex-col md:flex-row gap-4 px-20">
-                <a href="http://wa.me/919579035371" className="bg-primary text-white px-6 py-4 font-bold hover:bg-primary/80 transition duration text-center"  style={{fontSize: clampPx(20,22,22)}}>Chat on Whatsapp</a>
-                <a href="http://instagram.com/mooshuree" className="bg-primary text-white px-6 py-4 font-bold hover:bg-primary/80 transition duration text-center" style={{fontSize: clampPx(20,22,22)}}>Connect On Instagram</a>
-                <a href="mailto:mooshuree@gmail.com" className="bg-primary text-white px-6 py-4 font-bold hover:bg-primary/80 transition duration text-center" style={{fontSize: clampPx(20,22,22)}}>MOOSHURE@GMAIL.COM</a>
-                <a href="tel:+917021089934" className="bg-primary text-white px-6 py-4 font-bold hover:bg-primary/80 transition duration text-center" style={{fontSize: clampPx(20,22,22)}}>
+            <h1 className="text-primary text-[72px] md:text-[48px] font-heading">LET'S CONNECT!</h1>
+            <div className="flex gap-4 mb-10">
+                <a href="http://wa.me/919579035371" className="text-[42px] md:text-[24px] bg-primary text-white px-6 py-4 font-bold hover:bg-primary/80 transition duration">Chat on Whatsapp</a>
+                <a href="http://instagram.com/mooshuree" className="text-[42px] md:text-[24px] bg-primary text-white px-6 py-4 font-bold hover:bg-primary/80 transition duration">Connect On Instagram</a>
+                <a href="mailto:mooshuree@gmail.com" className="text-[42px] md:text-[24px] bg-primary text-white px-6 py-4 font-bold hover:bg-primary/80 transition duration">MOOSHURE@GMAIL.COM</a>
+                <a href="tel:+917021089934" className="text-[42px] md:text-[24px] bg-primary text-white px-6 py-4 font-bold hover:bg-primary/80 transition duration">
                     Connect on Call
                 </a>
             </div>
