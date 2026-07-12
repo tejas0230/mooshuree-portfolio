@@ -15,7 +15,7 @@ export default function ClientList({ logos }: ClientListProps) {
             </div>
             <div className="w-full flex flex-col items-start py-4">
                 <h1 className="bg-primary text-white text-center py-2 px-4 md:px-8 rounded-4xl" style={{fontSize:clampPx(16, 28,28)}}>Top Brands</h1>
-                <div className="w-full grid grid-cols-4 md:grid-cols-6 gap-2 md:gap-5 mt-4">
+                <div className="w-full grid grid-cols-6 gap-2 md:gap-5 mt-4">
                     {logos.map((logo) => (
                         <div
                             key={logo}
