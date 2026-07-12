@@ -10,10 +10,11 @@ export default function Hero() {
     >
       <h1
         className="font-heading text-center text-primary"
-        style={{ fontSize: clampPx(44, 200, 200), marginBottom: clampPx(0, 40, 40) }}
+        style={{ fontSize: clampPx(44, 200, 200)}}
       >
         Mooshuree&apos;s Portfolio
       </h1>
+      <h2 className="font-sans text-primary text-center w-full mb-5 font-bold" style={{fontSize: clampPx(18,60,60), lineHeight: clampPx(10,100,100)}} >Hum brands ke liye videos banate hai.</h2>
       <div className="flex flex-row md:flex-row text-primary items-center justify-center" style={{gap: clampPx(4,40,40)}}>
         
         <a
