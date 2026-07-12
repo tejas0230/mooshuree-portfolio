@@ -25,7 +25,7 @@ export default function Videos() {
     } | null>(null);
 
     return (
-        <div className="w-full lg:max-w-[1440px] mx-auto flex flex-col items-center p-4">
+        <div className="w-full lg:max-w-[1440px] mx-auto flex flex-col items-center p-4" id="our-work">
             <div className="flex flex-row items-center justify-between w-full  border-y-3 border-primary p-4">
                 <h1 className="text-[120px] md:text-[48px] font-heading text-center text-primary">VIDEOS</h1>
             </div>
