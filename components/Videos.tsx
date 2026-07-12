@@ -25,18 +25,18 @@ export default function Videos() {
     } | null>(null);
 
     return (
-        <div className="w-full mx-auto flex flex-col items-center p-2">
-            <div className="flex flex-row items-center justify-between w-full  border-y-3 border-primary p-2 md:p-4">
-                <h1 className="font-heading text-center text-primary" style={{ fontSize: clampPx(30, 48, 48) }}>Videos</h1>
+        <div className="w-full mx-auto flex flex-col items-center p-1 md:p-2" id="our-work">
+            <div className="flex flex-row items-center justify-between w-full border-y-1 md:border-y-3 border-primary p-1 md:p-2">
+                <h1 className="font-heading text-center text-primary" style={{fontSize: clampPx(24,48,48)}}>VIDEOS</h1>
             </div>
-            <div className="w-full flex flex-col gap-10 py-4">
+            <div className="w-full flex flex-col gap-2 md:gap-10 py-2 md:py-4">
                 {categories.map((category) => (
                     <div key={category} className="w-full flex flex-col items-start">
-                        <h1 className="bg-primary text-white text-center py-2 px-4 md:px-8 rounded-4xl uppercase mb-3" style={{fontSize:clampPx(20, 28,28)}}>
+                        <h1 className="bg-primary text-white text-center py-1 px-2 md:px-8 rounded-4xl uppercase mb-2" style={{fontSize:clampPx(14, 28,28)}}>
                             {category.replaceAll("-", " ")}
                         </h1>
 
-                        <div className="w-full grid grid-cols-3 md:grid-cols-9 gap-2">
+                        <div className="w-full grid grid-cols-9 gap-[2px] md:gap-2">
                             {Array.from({ length: 9 }).map((_, index) => {
                                 const id = index + 1;
 
@@ -47,7 +47,7 @@ export default function Videos() {
                                 return (
                                     <div
                                         key={id}
-                                        className="relative aspect-[9/16] rounded-lg overflow-hidden bg-black"
+                                        className="relative aspect-[9/16] rounded-sm md:rounded-lg overflow-hidden bg-black"
                                     >
                                         {isPlaying ? (
                                             <video
@@ -75,11 +75,10 @@ export default function Videos() {
                                                     }
                                                     className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/35 transition"
                                                 >
-                                                    <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
+                                                    <div className="w-5 h-5 md:w-10 md:h-10 rounded-full bg-white/90 flex items-center justify-center">
                                                         <Play
-                                                            size={18}
-                                                            className="fill-primary text-primary ml-0.5"
-                                                        />
+                                                            className="w-2 h-2 md:w-[18px] md:h-[18px] fill-primary text-primary ml-0.5"
+                                                            />
                                                     </div>
                                                 </button>
                                             </>

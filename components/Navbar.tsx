@@ -12,7 +12,7 @@ export default function Navbar() {
         style={{ gap: clampPx(24, 200, 200), fontSize: clampPx(13, 28, 20) }}
       >
         <li><Link href="/">Home</Link></li>
-        <li><Link href="/">Our Work</Link></li>
+        <li><Link href="#our-work">Our Work</Link></li>
         <li><Link href="#contact">Contact</Link></li>
         <li><Link href="#about-us">About Us</Link></li>
       </ul>

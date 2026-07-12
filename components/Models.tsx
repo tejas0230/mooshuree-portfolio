@@ -7,11 +7,11 @@ interface ModelProps {
 
 export default function OurModels({ models }: ModelProps) {
     return (
-        <div className="w-full mx-auto flex flex-col items-center p-2">
-            <div className="flex flex-row items-center justify-between w-full bg-primary text-white p-2 md:p-4">
-                <h1 className="font-heading text-center text-white" style={{fontSize: clampPx(30,48,48)}}>Our Models</h1>
+        <div className="w-full mx-auto flex flex-col items-center p-1 md:p-2">
+            <div className="flex flex-row items-center justify-between w-full bg-primary p-1 md:p-2">
+                <h1 className="font-heading text-center text-white" style={{fontSize: clampPx(24,48,48)}}>PRODUCT-SERVICES PHOTOS</h1>
             </div>
-            <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-[3px] bg-primary p-[3px]">
+            <div className="w-full grid grid-cols-4 lg:grid-cols-6 gap-[1px] md:gap-[3px] bg-primary p-[1px]">
                 {models.map((model, index) => (
                     <div
                         key={index}

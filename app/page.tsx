@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <div className="overflow-x-hidden w-screen">
-      <MooshureeWrapper>
+      {/* <MooshureeWrapper> */}
         <Navbar />
         <Hero />
         <ClientList logos={logos} />
@@ -40,7 +40,7 @@ export default function Home() {
         <OurModels models={models}/>
         <OurPricing />
         <LetsConnect />
-      </MooshureeWrapper>
+      {/* </MooshureeWrapper> */}
     </div>
   );
 }
