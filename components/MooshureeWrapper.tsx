@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
-const DESIGN_WIDTH = 2120;
+const DESIGN_WIDTH = 1920;
 
 export default function MooshureeWrapper({
   children,
