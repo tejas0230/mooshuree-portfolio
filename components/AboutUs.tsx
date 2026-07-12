@@ -15,7 +15,7 @@ export default function AboutUs(){
                     <a href="mailto:mooshuree@gmail.com" className="text-white bg-primary w-full rounded-4xl px-2 md:px-6 py-2 md:py-4 inline-flex font-body mt-4 item-center justify-center" style={{fontSize:  clampPx(12,20,20)}}>MOOSHUREE@GMAIL.COM</a>
                 </div>
                 <div className="w-[50%] flex item-start justify-center h-full">
-                    <Image src="/about.PNG" alt="About Us" width={1000} height={300} className="md:w-[60%] md:h-[60%]"  />
+                    <Image src="/about_us.PNG" alt="About Us" width={1000} height={300} className="md:w-[60%] md:h-[60%]"  />
                 </div>
             </div>
         </div>
