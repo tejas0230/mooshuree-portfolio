@@ -36,7 +36,7 @@ export default function Videos() {
                             {category.replaceAll("-", " ")}
                         </h1>
 
-                        <div className="w-full grid grid-cols-3 md:grid-cols-9 gap-2">
+                        <div className="w-full grid grid-cols-9 gap-2">
                             {Array.from({ length: 9 }).map((_, index) => {
                                 const id = index + 1;
 

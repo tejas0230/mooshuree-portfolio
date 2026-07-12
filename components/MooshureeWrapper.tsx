@@ -1,35 +1,53 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-const DESIGN_WIDTH = 1920;
+const DESIGN_WIDTH = 2120;
 
 export default function MooshureeWrapper({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  
-  useEffect(() => {
-  const update = () => {
-    const scale = Math.min(window.innerWidth / 1920, 1);
+  const [scale, setScale] = useState(1);
+  const [height, setHeight] = useState(0);
 
-    document.documentElement.style.setProperty(
-      "--scale",
-      scale.toString()
-    );
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const updateScale = () => {
+    if (!contentRef.current) return;
+
+    const newScale = Math.min(window.innerWidth / DESIGN_WIDTH, 1);
+
+    setScale(newScale);
+    setHeight(contentRef.current.scrollHeight * newScale);
   };
 
-  update();
+  useLayoutEffect(() => {
+    updateScale();
+  }, []);
 
-  window.addEventListener("resize", update);
+  useEffect(() => {
+    window.addEventListener("resize", updateScale);
 
-  return () => window.removeEventListener("resize", update);
-}, []);
+    return () => {
+      window.removeEventListener("resize", updateScale);
+    };
+  }, []);
 
   return (
-    <div className="overflow-hidden w-screen" >
-      <div>
+    <div
+      className="overflow-hidden w-screen"
+      style={{ height }}
+    >
+      <div
+        ref={contentRef}
+        style={{
+          width: DESIGN_WIDTH,
+          transform: `scale(${scale})`,
+          transformOrigin: "top left",
+        }}
+      >
         {children}
       </div>
     </div>
