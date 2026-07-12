@@ -8,21 +8,22 @@ interface ClientListProps {
 
 export default function ClientList({ logos }: ClientListProps) {
     return (
-        <div className="w-full lg:max-w-[1440px] mx-auto flex flex-col items-center p-4">
-            <div className="flex flex-row items-center justify-between w-full  border-y-3 border-primary p-4">
-                <h1 className="text-[120px] md:text-[48px] font-heading text-center text-primary">CLIENT LIST</h1>
-                <h3 className="text-[64px] md:text-[24px] text-center text-primary font-bold">200+ Clients</h3>
+        <div className="w-full mx-auto flex flex-col items-center p-1 md:p-2">
+            <div className="flex flex-row items-center justify-between w-full border-y-1 md:border-y-3 border-primary p-1 md:p-2">
+                <h1 className="font-heading text-center text-primary" style={{fontSize: clampPx(24,48,48)}}>CLIENT LIST</h1>
+                <h3 className="text-center text-primary font-bold" style={{fontSize: clampPx(14,24,24)}}>200+ Clients</h3>
             </div>
-            <div className="w-full flex flex-col items-start py-4">
-                <h1 className="bg-primary text-white text-[64px] md:text-[22px] text-center px-8 py-4 md:py-2 md:px-4 rounded-[999px] md:rounded-4xl mb-4">Top Brands</h1>
-                <div className="w-full grid grid-cols-6 gap-5 mt-8">
+            <div className="w-full flex flex-col items-start py-1 md:py-4">
+                <h1 className="bg-primary text-white text-center py-1 px-2 md:px-8 rounded-4xl" style={{fontSize:clampPx(14, 28,28)}}>Top Brands</h1>
+                <div className="w-full grid grid-cols-6 gap-1 md:gap-2 md:gap-5 mt-2 md:mt-4">
                     {logos.map((logo) => (
                         <div
-                            key={logo}
+                            key={logo}                                                                      
                             className="
-        h-50
-        md:h-28
-        rounded-xl
+        h-12
+        md:h-36
+        roundex-md
+        md:rounded-xl
         bg-white
         border border-gray-200
         shadow-sm
@@ -33,7 +34,7 @@ export default function ClientList({ logos }: ClientListProps) {
         flex
         items-center
         justify-center
-        p-2
+        p-1
         md:p-4
       "
                         >

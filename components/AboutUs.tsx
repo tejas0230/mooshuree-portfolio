@@ -17,7 +17,6 @@ export default function AboutUs(){
                 <div className="px-[40px]">
                     <Image src="/about_us.PNG" alt="About Us" width={1000} height={300} />
                 </div>
-                
             </div>
         </div>
     )

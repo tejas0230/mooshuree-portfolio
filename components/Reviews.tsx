@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
-import { motion } from "framer-motion";
 import { clampPx } from "@/lib/vw";
 
 export default function Reviews() {
@@ -82,15 +81,13 @@ export default function Reviews() {
     const total = reviews.length;
     const extended = [...reviews, ...reviews, ...reviews];
 
-    const [index, setIndex] = useState(total);
-    const [animate, setAnimate] = useState(true);
-    const [step, setStep] = useState(0); // measured px distance between cards, incl. gap
-
+    const scrollRef = useRef<HTMLDivElement>(null);
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const [step, setStep] = useState(0); // measured px distance between cards, incl. gap
+    const initialized = useRef(false);
 
-    // Measure the real gap between two adjacent rendered cards, so the
-    // slide distance always matches however wide the cards actually are
-    // at the current screen size — no hardcoded px values.
+    // Measure the real gap between two adjacent rendered cards, so button
+    // scroll distance always matches however wide the cards actually are.
     const measureStep = useCallback(() => {
         const first = cardRefs.current[0];
         const second = cardRefs.current[1];
@@ -110,23 +107,58 @@ export default function Reviews() {
         };
     }, [measureStep]);
 
-    const goTo = (dir: number) => {
-        setAnimate(true);
-        setIndex((prev) => prev + dir);
-    };
-
-    const next = () => goTo(1);
-    const prev = () => goTo(-1);
-
-    const handleAnimationComplete = () => {
-        if (index >= total * 2) {
-            setAnimate(false);
-            setIndex((i) => i - total);
-        } else if (index < total) {
-            setAnimate(false);
-            setIndex((i) => i + total);
+    // Start scrolled to the middle copy of the tripled list, so both
+    // directions have buffer cards to scroll into.
+    useEffect(() => {
+        if (step > 0 && scrollRef.current && !initialized.current) {
+            scrollRef.current.scrollLeft = step * total;
+            initialized.current = true;
         }
+    }, [step, total]);
+
+    const next = () => {
+        scrollRef.current?.scrollBy({ left: step, behavior: "smooth" });
     };
+    const prev = () => {
+        scrollRef.current?.scrollBy({ left: -step, behavior: "smooth" });
+    };
+
+    // Infinite loop: once native scroll (drag/swipe/button) settles near
+    // the start or end buffer copy, silently jump back to the equivalent
+    // spot in the middle copy — instant, no animation, so it's invisible
+    // since the copies are identical.
+    useEffect(() => {
+        const el = scrollRef.current;
+        if (!el || step === 0) return;
+
+        let settleTimeout: ReturnType<typeof setTimeout>;
+        const singleSetWidth = step * total;
+
+        const checkBounds = () => {
+            if (el.scrollLeft < singleSetWidth * 0.5) {
+                const prevBehavior = el.style.scrollBehavior;
+                el.style.scrollBehavior = "auto";
+                el.scrollLeft += singleSetWidth;
+                el.style.scrollBehavior = prevBehavior;
+            } else if (el.scrollLeft > singleSetWidth * 1.5) {
+                const prevBehavior = el.style.scrollBehavior;
+                el.style.scrollBehavior = "auto";
+                el.scrollLeft -= singleSetWidth;
+                el.style.scrollBehavior = prevBehavior;
+            }
+        };
+
+        const handleScroll = () => {
+            clearTimeout(settleTimeout);
+            settleTimeout = setTimeout(checkBounds, 120);
+        };
+
+        el.addEventListener("scroll", handleScroll, { passive: true });
+        return () => {
+            el.removeEventListener("scroll", handleScroll);
+            clearTimeout(settleTimeout);
+        };
+    }, [step, total]);
 
     return (
         <div className="w-full mx-auto bg-primary px-2 py-10 relative">
@@ -146,55 +178,52 @@ export default function Reviews() {
                     <ChevronRight />
                 </button>
 
-                <div className="overflow-hidden w-full max-w-[90%] md:max-w-[1660px] mx-auto px-2">
-                    <motion.div
-                        className="flex gap-10"
-                        animate={{ x: -index * step }}
-                        transition={animate ? { duration: 0.4, ease: "easeInOut" } : { duration: 0 }}
-                        onAnimationComplete={handleAnimationComplete}
-                    >
-                        {extended.map((item, i) => (
-                            <div
-                                key={`${item.client}-${i}`}
-                                ref={(el) => { cardRefs.current[i] = el; }}
-                                className="bg-white rounded-2xl shadow-xl max-w-[500px] p-4 md:p-8  flex flex-col shrink-0"
-                            >
-                                <div className="flex items-center gap-2">
+                <div
+                    ref={scrollRef}
+                    className="flex gap-10 overflow-x-auto snap-x snap-mandatory w-full max-w-[90%] md:max-w-[1660px] mx-auto px-2 [&::-webkit-scrollbar]:hidden"
+                    style={{ scrollbarWidth: "none", msOverflowStyle: "none", scrollBehavior: "smooth" }}
+                >
+                    {extended.map((item, i) => (
+                        <div
+                            key={`${item.client}-${i}`}
+                            ref={(el) => { cardRefs.current[i] = el; }}
+                            className="snap-center bg-white rounded-2xl shadow-xl w-full md:max-w-[400px] lg:max-w-[500px] p-4 md:p-8  flex flex-col shrink-0"
+                        >
+                            <div className="flex items-center gap-2">
 
-                                    <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold">
-                                        {item.client.charAt(0)}
-                                    </div>
-
-                                    <div>
-                                        <h3 className="text-2xl font-semibold" style={{ fontSize: clampPx(40, 20, 20) }}>
-                                            {item.client}
-                                        </h3>
-
-                                        {/* <p className="text-neutral-500" style={{ fontSize: clampPx(30, 18, 18) }}>
-                                            Client
-                                        </p> */}
-                                    </div>
-
+                                <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold">
+                                    {item.client.charAt(0)}
                                 </div>
 
-                                <div className="flex gap-1 mt-2  md:mt-5">
-                                    {[...Array(5)].map((_, s) => (
-                                        <Star
-                                            key={s}
-                                            size={clampPx(26,22,22)}
-                                            fill="#FFC107"
-                                            color="#FFC107"
-                                        />
-                                    ))}
-                                </div>
+                                <div>
+                                    <h3 className="text-2xl font-semibold" style={{ fontSize: clampPx(16, 20, 20) }}>
+                                        {item.client}
+                                    </h3>
 
-                                <p className="mt-2 md:mt-6 leading-12 md:leading-9 text-neutral-700" style={{ fontSize: clampPx(36, 20, 20) }}>
-                                    {item.review}
-                                </p>
+                                    <p className="text-neutral-500" style={{ fontSize: clampPx(12, 18, 18) }}>
+                                        Client
+                                    </p>
+                                </div>
 
                             </div>
-                        ))}
-                    </motion.div>
+
+                            <div className="flex gap-1 mt-2  md:mt-5">
+                                {[...Array(5)].map((_, s) => (
+                                    <Star
+                                        key={s}
+                                        size={22}
+                                        fill="#FFC107"
+                                        color="#FFC107"
+                                    />
+                                ))}
+                            </div>
+
+                            <p className="mt-2 md:mt-6 text-[32px] md:text-lg leading-5 md:leading-9 text-neutral-700" style={{ fontSize: clampPx(14, 20, 20) }}>
+                                {item.review}
+                            </p>
+
+                        </div>
+                    ))}
                 </div>
             </div>
 
