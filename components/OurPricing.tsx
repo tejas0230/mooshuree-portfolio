@@ -88,9 +88,7 @@ export default function OurPricing() {
                             ))}
 
                         </div>
-
                     </div>
-
                 </div>
 
                 {/* Pro */}
@@ -140,13 +138,9 @@ export default function OurPricing() {
                                     </span>
                                 </div>
                             ))}
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
         </div>
     )

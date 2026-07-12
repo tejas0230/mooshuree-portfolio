@@ -166,14 +166,14 @@ export default function Reviews() {
             <div className="w-full relative">
                 <button
                     onClick={prev}
-                    className="absolute  md:left-10 top-1/2 -translate-y-1/2 w-6 h-6 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition z-10"
+                    className="absolute left-10 top-1/2 -translate-y-1/2 w-20 h-20 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition z-10"
                 >
                     <ChevronLeft />
                 </button>
 
                 <button
                     onClick={next}
-                    className="absolute right-0 md:right-10 top-1/2 -translate-y-1/2 w-6 h-6 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition z-10"
+                    className="absolute right-10 md:right-10 top-1/2 -translate-y-1/2 w-20 h-20 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition z-10"
                 >
                     <ChevronRight />
                 </button>
@@ -228,9 +228,9 @@ export default function Reviews() {
             </div>
 
 
-            <div className="flex flex-col md:flex-row justify-between items-start gap-4 px-4 md:px-[100px] pt-10">
+            <div className="flex justify-between items-start gap-4 px-4 md:px-[100px] pt-10">
                 {acheivements.map((item, key) => (
-                    <div key={key} className="px-8 py-2 bg-white text-primary font-bold rounded-4xl inline-flex" style={{fontSize:clampPx(18,20,20)}}>
+                    <div key={key} className="px-8 py-2 bg-white text-primary font-bold rounded-4xl inline-flex" style={{fontSize:clampPx(40,20,20)}}>
                         {item}
                     </div>
                 ))}
