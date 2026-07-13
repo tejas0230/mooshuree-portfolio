@@ -11,7 +11,7 @@ import OurPricing from "@/components/OurPricing";
 import Reviews from "@/components/Reviews";
 import LetsConnect from "@/components/LetsConnect";
 import Videos from "@/components/Videos";
-
+import TypesOfVideos from "@/components/TypesOfVideos";
 export default function Home() {
 
   const logoDir = path.join(process.cwd(), "public", "clients");
@@ -36,6 +36,7 @@ export default function Home() {
         <ClientList logos={logos} />
         <Reviews />
         <Videos />
+        <TypesOfVideos />
         <AboutUs />
         <OurModels models={models}/>
         <OurPricing />
