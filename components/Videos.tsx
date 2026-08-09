@@ -107,7 +107,7 @@ export default function Videos() {
 
                         <video
                             key={`${playing.category}_${playing.id}`}
-                            src={`https://portfolio.srv1501339.hstgr.cloud/videos/${playing.category}/${playing.category}_${playing.id}.mp4`}
+                            src={`https://media.mooshuree.in/videos/${playing.category}/${playing.category}_${playing.id}.mp4`}
                             controls
                             autoPlay
                             playsInline

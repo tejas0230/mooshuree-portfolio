@@ -97,7 +97,7 @@ export default function TypesOfVideos() {
 
                         <video
                             key={playing}
-                            src={`https://portfolio.srv1501339.hstgr.cloud/videos/types_of_videos/${playing}.mp4`}
+                            src={`https://media.mooshuree.in/videos/types_of_videos/${playing}.mp4`}
                             controls
                             autoPlay
                             playsInline
