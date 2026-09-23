@@ -3,7 +3,7 @@ import { clampPx } from "@/lib/vw";
 export default function OurPricing() {
 
     const starterFeatures = [
-        "1 videos / month",
+        "1 video / month",
         "Script & concept",
         "Creator / model",
         "Shoot + professional edit",
