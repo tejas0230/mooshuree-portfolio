@@ -3,7 +3,7 @@ import { clampPx } from "@/lib/vw";
 export default function OurPricing() {
 
     const starterFeatures = [
-        "2 videos / month",
+        "1 videos / month",
         "Script & concept",
         "Creator / model",
         "Shoot + professional edit",
@@ -58,7 +58,7 @@ export default function OurPricing() {
 
                         <div className="bg-neutral-900 rounded-full px-7 py-2 md:py-4 flex justify-center items-center flex-col mt-3">
                             <h3 className="text-[24px] md:text-5xl font-bold text-white leading-8">
-                                ₹7,600
+                                ₹4,800
                             </h3>
 
                             <p className="text-base text-neutral-300 leading-5">
@@ -67,7 +67,7 @@ export default function OurPricing() {
                         </div>
 
                         <h4 className="text-[18px] md:text-2xl font-bold text-center mt-2 md:mt-5">
-                            ₹3,800 per video
+                            ₹4,800 per video
                         </h4>
 
                         <div className="mt-3 md:mt-5 pt-5 border-t border-neutral-200 space-y-3">
@@ -121,7 +121,7 @@ export default function OurPricing() {
                                 ₹3,500 per video
                             </h4>
                             <p className="text-[12px] md:text-sm opacity-90">
-                                (Save ₹300 each)
+                                (Save ₹1,300 each)
                             </p>
                         </div>
 
